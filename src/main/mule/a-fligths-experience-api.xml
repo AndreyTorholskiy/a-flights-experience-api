@@ -5,7 +5,7 @@
     </http:listener-config>
     <apikit:config name="a-fligths-experience-api-config" api="a-fligths-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="a-fligths-experience-api-main">
-        <http:listener config-ref="a-fligths-experience-api-httpListenerConfig" path="${http.listener.path}/*">
+        <http:listener config-ref="HTTP_Listener_config" path="${http.listener.path}/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
@@ -97,7 +97,7 @@ output application/json
         </error-handler>
     </flow>
     <flow name="a-fligths-experience-api-console">
-        <http:listener config-ref="a-fligths-experience-api-httpListenerConfig" path="${http.listener.path}/console/*">
+        <http:listener config-ref="HTTP_Listener_config" path="${http.listener.path}/console/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
@@ -127,6 +127,6 @@ output application/json
 		<flow-ref doc:name="getFlightsProcessAPI" doc:id="3369ae72-8c10-4fa5-a2a1-4a01206c10e8" name="getFlightsProcessAPI"/>
     </flow>
     <flow name="get:\flights\(ID):a-fligths-experience-api-config">
-		<flow-ref doc:name="getFlightsProcessAPI" doc:id="ad2b548f-b772-4f00-9da6-e699f053b3b0" name="getFlightsProcessAPI"/>
+		<flow-ref doc:name="getFlightByIDProcessAPI" doc:id="ad2b548f-b772-4f00-9da6-e699f053b3b0" name="getFlightByIDProcessAPI"/>
     </flow>
 </mule>

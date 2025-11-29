@@ -4,7 +4,7 @@ api:
 http:
   listener:
     host: "0.0.0.0"
-    port: "8087"
+    port: "8083"
     path: "/a-flights-ea/api/${api.version}"
     connectionTimeout: "120000" # 2 minutes
 
