@@ -1,0 +1,16 @@
+api:
+  version: "v1"
+
+http:
+  listener:
+    host: "0.0.0.0"
+    port: "8087"
+    path: "/a-flights-ea/api/${api.version}"
+    connectionTimeout: "120000" # 2 minutes
+
+processAPI:
+  host: "0.0.0.0"
+  port: "8088"
+  basePath: "/a-flights-pa/api/v1"
+  connectionTimeout: "120000" # 2 minutes
+
