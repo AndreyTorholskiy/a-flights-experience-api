@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<sub-flow name="getFlightsProcessAPI" doc:id="94080a6a-22b7-46a6-9334-b3d441d6bb67" >
-		<http:request method="GET" doc:name="Call a-flights-process-api /flights" doc:id="1e3412ab-90c5-4488-a3a5-b476ead3172f" config-ref="HTTP_Request_Process_API_configuration" path="/flights">
+		<http:request doc:name="Call a-flights-process-api /flights" doc:id="1e3412ab-90c5-4488-a3a5-b476ead3172f" config-ref="HTTP_Request_ProcessAPI_config" path="/flights" responseTimeout="${http.requester.connectionTimeout}">
 			<http:query-params ><![CDATA[#[output application/java 
 ---
 {
@@ -14,7 +14,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		</http:request>
 	</sub-flow>
 	<sub-flow name="getFlightByIDProcessAPI" doc:id="5009a0cb-05b4-4261-864c-0d74e6408d6c" >
-		<http:request method="GET" doc:name="Call a-flights-process-api /flights/ID" doc:id="c70cbc22-4d1b-47ed-8555-8f8e677d2066" config-ref="HTTP_Request_Process_API_configuration" path="/flights/{ID}">
+		<http:request doc:name="Call a-flights-process-api /flights/ID" doc:id="c70cbc22-4d1b-47ed-8555-8f8e677d2066" config-ref="HTTP_Request_ProcessAPI_config" path="/flights/{ID}" responseTimeout="${http.requester.connectionTimeout}">
 			<http:uri-params ><![CDATA[#[output application/java
 ---
 {
