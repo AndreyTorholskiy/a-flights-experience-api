@@ -7,12 +7,6 @@
 http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<global-property doc:name="Global Property" doc:id="2c86fddd-988c-4d0f-adf7-df52bc2344b4" name="env" value="local" />
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="97042885-934c-4a77-b423-f82967205fd0" >
-		<http:listener-connection host="${http.listener.host}" port="${http.listener.port}" connectionIdleTimeout="${http.listener.connectionTimeout}" />
-	</http:listener-config>
-	<http:request-config name="HTTP_Request_Process_API_configuration" doc:name="HTTP Request configuration" doc:id="35c4c11f-873a-4ebd-8340-86549ce0dfa0" basePath="${processAPI.basePath}" responseTimeout="${processAPI.connectionTimeout}">
-		<http:request-connection host="${processAPI.host}" port="${processAPI.port}"/>
-	</http:request-config>
 	<configuration-properties doc:name="Configuration properties" doc:id="b513702c-ccee-405b-9035-353ab42bd548" file="config/${env}-properties.yaml" />
-
+    <apikit:config name="a-fligths-experience-api-config" api="a-fligths-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
 </mule>
