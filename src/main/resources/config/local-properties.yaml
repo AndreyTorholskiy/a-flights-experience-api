@@ -1,0 +1,9 @@
+api:
+  version: "v1"
+
+http:
+  listener:
+    path: "/a-flights-ea/api/${api.version}"
+  requester:
+    connectionTimeout: "120000" # 2 minutes
+
