@@ -9,4 +9,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<global-property doc:name="Global Property" doc:id="2c86fddd-988c-4d0f-adf7-df52bc2344b4" name="env" value="local" />
 	<configuration-properties doc:name="Configuration properties" doc:id="b513702c-ccee-405b-9035-353ab42bd548" file="config/${env}-properties.yaml" />
     <apikit:config name="a-fligths-experience-api-config" api="a-fligths-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<import doc:name="Import" doc:id="99391b14-728f-421f-96ee-57dd1d35b719" file="a-error-common.xml" />
+	<configuration doc:name="Configuration" doc:id="16f2c807-069b-4ea8-8ace-65a2f1834b0c" defaultErrorHandler-ref="a-globalError_Handler" />
 </mule>
