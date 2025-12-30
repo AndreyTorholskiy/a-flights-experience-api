@@ -6,9 +6,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
 http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-	<global-property doc:name="Global Property" doc:id="2c86fddd-988c-4d0f-adf7-df52bc2344b4" name="env" value="local" />
-	<configuration-properties doc:name="Configuration properties" doc:id="b513702c-ccee-405b-9035-353ab42bd548" file="config/${env}-properties.yaml" />
+	<global-property doc:name="Global Property" doc:id="d1a25846-5c0f-4bb7-8061-0088b636d07e" name="env" value="local" />
+	<configuration-properties doc:name="Configuration properties" doc:id="c0d9cf00-3234-44c6-8a46-6f208cf825ba" file="config/${env}-properties.yaml" />
     <apikit:config name="a-fligths-experience-api-config" api="a-fligths-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
-	<import doc:name="Import" doc:id="99391b14-728f-421f-96ee-57dd1d35b719" file="a-error-common.xml" />
-	<configuration doc:name="Configuration" doc:id="16f2c807-069b-4ea8-8ace-65a2f1834b0c" defaultErrorHandler-ref="a-globalError_Handler" />
+	<import doc:name="Import" doc:id="b7633134-0154-48b8-ac70-db7c674e240e" file="a-error-common.xml" />
+	<configuration doc:name="Configuration" doc:id="82ef97b0-97e2-465d-8ec4-d63e839a1626" defaultErrorHandler-ref="a-globalError_Handler" />
+	<import doc:name="Import" doc:id="e77eef6c-718f-4d9d-808b-0a18b555c9aa" file="a-logging-common.xml" />
 </mule>
