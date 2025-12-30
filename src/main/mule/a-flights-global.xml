@@ -11,4 +11,5 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
     <apikit:config name="a-fligths-experience-api-config" api="a-fligths-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
 	<import doc:name="Import" doc:id="99391b14-728f-421f-96ee-57dd1d35b719" file="a-error-common.xml" />
 	<configuration doc:name="Configuration" doc:id="16f2c807-069b-4ea8-8ace-65a2f1834b0c" defaultErrorHandler-ref="a-globalError_Handler" />
+	<import doc:name="Import" doc:id="df0fdfdb-4955-493e-892f-dc31bddfe137" file="a-logging-common.xml" />
 </mule>
