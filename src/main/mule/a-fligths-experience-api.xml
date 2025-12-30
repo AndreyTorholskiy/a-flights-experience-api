@@ -10,9 +10,7 @@
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-		<flow-ref doc:name="initialRequestLogging" doc:id="7059ca6c-d0f1-4b20-acce-4e088ed68412" name="initialRequestLogging"/>
         <apikit:router config-ref="a-fligths-experience-api-config" />
-        <flow-ref doc:name="finalLoggerMessage" doc:id="13a60bf1-f2f1-4a76-b44d-d0e014e6bec1" name="finalLoggerMessage"/>
     </flow>
     <flow name="a-fligths-experience-api-console">
         <http:listener config-ref="HTTP_Domain_Listener_config" path="${http.listener.path}/console/*">
@@ -27,33 +25,9 @@
         <apikit:console config-ref="a-fligths-experience-api-config" />
     </flow>
     <flow name="get:\flights:a-fligths-experience-api-config">
-		<ee:transform doc:name="logMessage" doc:id="772e74ef-ff74-4b94-8625-8ad3cb779b7b" >
-			<ee:message />
-			<ee:variables >
-				<ee:set-variable variableName="logMessage" ><![CDATA[%dw 2.0
-output application/json
----
-{
-	message: "Get American Flights request" 
-}]]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
-		<flow-ref doc:name="auditLogging" doc:id="c6b50bef-9ea3-4cf8-b7af-93acd0fc8ece" name="auditLogging" />    
 		<flow-ref doc:name="getFlightsProcessAPI" doc:id="3369ae72-8c10-4fa5-a2a1-4a01206c10e8" name="getFlightsProcessAPI"/>
     </flow>
     <flow name="get:\flights\(ID):a-fligths-experience-api-config">
-		<ee:transform doc:name="logMessage" doc:id="768904a8-5437-4fb4-895a-481d32ae883f" >
-			<ee:message />
-			<ee:variables >
-				<ee:set-variable variableName="logMessage" ><![CDATA[%dw 2.0
-output application/json
----
-{
-	message: "Get American Flight By ID request" 
-}]]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
-		<flow-ref doc:name="auditLogging" doc:id="79a92c0e-5364-481e-9f89-244f81133f39" name="auditLogging" />
 		<flow-ref doc:name="getFlightByIDProcessAPI" doc:id="ad2b548f-b772-4f00-9da6-e699f053b3b0" name="getFlightByIDProcessAPI"/>
     </flow>
 </mule>
