@@ -10,7 +10,9 @@
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
+		<flow-ref doc:name="initialRequestLogging" doc:id="112520f7-154f-48fd-a6c3-880d4f09ac1d" name="initialRequestLogging"/>
         <apikit:router config-ref="a-fligths-experience-api-config" />
+        <flow-ref doc:name="finalLoggerMessage" doc:id="01118817-939d-4dc9-bede-1f6f1270cd58" name="finalLoggerMessage"/>
     </flow>
     <flow name="a-fligths-experience-api-console">
         <http:listener config-ref="HTTP_Domain_Listener_config" path="${http.listener.path}/console/*">
@@ -24,10 +26,10 @@
         </http:listener>
         <apikit:console config-ref="a-fligths-experience-api-config" />
     </flow>
-    <flow name="get:\flights:a-fligths-experience-api-config">
-		<flow-ref doc:name="getFlightsProcessAPI" doc:id="3369ae72-8c10-4fa5-a2a1-4a01206c10e8" name="getFlightsProcessAPI"/>
+    <flow name="get:\flights:a-fligths-experience-api-config">    
+		<flow-ref doc:name="getFlightsProcessAPI" doc:id="f3002089-8e5a-4d8b-9f44-8c078f901433" name="getFlightsProcessAPI"/>
     </flow>
     <flow name="get:\flights\(ID):a-fligths-experience-api-config">
-		<flow-ref doc:name="getFlightByIDProcessAPI" doc:id="ad2b548f-b772-4f00-9da6-e699f053b3b0" name="getFlightByIDProcessAPI"/>
+		<flow-ref doc:name="getFlightByIDProcessAPI" doc:id="19183526-5f90-4675-91bb-9a0e627df766" name="getFlightByIDProcessAPI"/>
     </flow>
 </mule>
