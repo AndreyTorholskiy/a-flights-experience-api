@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
     <flow name="a-fligths-experience-api-main">
-        <http:listener config-ref="HTTP_Domain_Listener_config" path="${http.listener.path}/*">
+        <http:listener config-ref="HTTP_Domain_Listener_config" path="${http.listener.basePath}/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
@@ -10,12 +10,12 @@
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-		<flow-ref doc:name="initialRequestLogging" doc:id="112520f7-154f-48fd-a6c3-880d4f09ac1d" name="initialRequestLogging"/>
+        <flow-ref doc:name="initialRequestLogging" doc:id="112520f7-154f-48fd-a6c3-880d4f09ac1d" name="initialRequestLogging" />
         <apikit:router config-ref="a-fligths-experience-api-config" />
-        <flow-ref doc:name="finalLoggerMessage" doc:id="01118817-939d-4dc9-bede-1f6f1270cd58" name="finalLoggerMessage"/>
+        <flow-ref doc:name="finalLoggerMessage" doc:id="01118817-939d-4dc9-bede-1f6f1270cd58" name="finalLoggerMessage" />
     </flow>
     <flow name="a-fligths-experience-api-console">
-        <http:listener config-ref="HTTP_Domain_Listener_config" path="${http.listener.path}/console/*">
+        <http:listener config-ref="HTTP_Domain_Listener_config" path="${http.listener.basePath}/console/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
@@ -26,10 +26,13 @@
         </http:listener>
         <apikit:console config-ref="a-fligths-experience-api-config" />
     </flow>
-    <flow name="get:\flights:a-fligths-experience-api-config">    
-		<flow-ref doc:name="getFlightsProcessAPI" doc:id="f3002089-8e5a-4d8b-9f44-8c078f901433" name="getFlightsProcessAPI"/>
+    <flow name="get:\flights:a-fligths-experience-api-config">
+        <flow-ref doc:name="getFlightsByDestination" doc:id="f3002089-8e5a-4d8b-9f44-8c078f901433" name="getFlightsByDestination" />
     </flow>
     <flow name="get:\flights\(ID):a-fligths-experience-api-config">
-		<flow-ref doc:name="getFlightByIDProcessAPI" doc:id="19183526-5f90-4675-91bb-9a0e627df766" name="getFlightByIDProcessAPI"/>
+        <flow-ref doc:name="getFlightByID" doc:id="19183526-5f90-4675-91bb-9a0e627df766" name="getFlightByID" />
+    </flow>
+    <flow name="get:\country-weather:a-fligths-experience-api-config">
+		<flow-ref doc:name="getCountryWeatherByCountry" doc:id="c4d811be-add8-4ae2-bd4f-8b05d1aed996" name="getCountryWeatherByCountry" />
     </flow>
 </mule>

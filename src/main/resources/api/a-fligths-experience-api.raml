@@ -1,8 +1,55 @@
 #%RAML 1.0
 title: a-fligths-experience-api
+version: v1
+mediaType: application/json
 
+traits:
+  QueryParameter:
+    queryParameters:
+      country:
+        displayName: Country
+        description: Name of the country
+        type: string
+        required: true
+      city:
+        displayName: City
+        description: City of current country
+        type: string
+        required: false 
+  ErrorResponse:
+    responses:
+      400:
+        body:
+          type: Error
+          example: !include examples/errors/400.json
+      404:
+        body:
+          type: Error
+          example: !include examples/errors/404.json
+      405:
+        body:
+          type: Error
+          example: !include examples/errors/405.json
+      406:
+        body:
+          type: Error
+          example: !include examples/errors/406.json            
+      415:
+        body:
+          type: Error
+          example: !include examples/errors/415.json
+      500:
+        body:
+          type: Error
+          example: !include examples/errors/500.json
+      501:
+        body:
+          type: Error
+          example: !include examples/errors/501.json
 types:
-  AmericanFlight: !include datatypes/AmericanFlightDataType.raml 
+  AmericanFlight: !include datatypes/AmericanFlightDataType.raml
+  CountryWeather: !include datatypes/CountryWeather.raml
+  Error: !include datatypes/Error.raml 
   
 /flights:
   get:
@@ -20,7 +67,7 @@ types:
           application/json:
             type: AmericanFlight[]
             examples:
-              output: !include examples/AmericanFlightsExample.json
+              output: !include examples/american-flights-example.json
   /{ID}:
     get:
       responses:
@@ -29,4 +76,15 @@ types:
             application/json:
               type: AmericanFlight
               examples:
-                output: !include examples/AmericanFlightExample.json
+                output: !include examples/american-flight-example.json
+                
+/country-weather:
+  get:
+    description: Get information about country weather
+    is: [QueryParameter, ErrorResponse]
+    responses:
+      200:
+        body:
+          application/json:
+            type: CountryWeather
+            example: !include examples/country-weather-example.json
