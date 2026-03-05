@@ -23,8 +23,7 @@ output application/json
 			<http:query-params ><![CDATA[#[output application/java
 ---
 {
-	"country" : attributes.queryParams.country,
-	"city": attributes.queryParams.city
+	"country" : attributes.queryParams.country
 }]]]></http:query-params>
 			<http:response-validator >
 				<http:success-status-code-validator values="200..599" />
