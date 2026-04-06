@@ -9,4 +9,3 @@ http:
       basePath: "/a-flights-pa/api/v1"
     countryWeatherAPI:
       basePath: "/a-country-weather-pa/api/v1"
-
