@@ -3,7 +3,20 @@ title: a-fligths-experience-api
 version: v1
 mediaType: application/json
 
+types:
+  AmericanFlight: !include datatypes/AmericanFlightDataType.raml
+  CountryWeather: !include datatypes/CountryWeather.raml
+  Error: !include datatypes/Error.raml 
+
 traits:
+  DestinationFilter:
+    queryParameters:
+      destination:
+        required: false
+        enum:
+          - SFO
+          - LAX
+          - CLE
   QueryParameter:
     queryParameters:
       country:
@@ -46,21 +59,12 @@ traits:
         body:
           type: Error
           example: !include examples/errors/501.json
-types:
-  AmericanFlight: !include datatypes/AmericanFlightDataType.raml
-  CountryWeather: !include datatypes/CountryWeather.raml
-  Error: !include datatypes/Error.raml 
   
 /flights:
   get:
     displayName: Get flights
-    queryParameters:
-      destination:
-        required: false
-        enum:
-          - SFO
-          - LAX
-          - CLE
+    description: Retrieve a list of all flights
+    is: [DestinationFilter, ErrorResponse]
     responses:
       200:
         body:
@@ -70,6 +74,9 @@ types:
               output: !include examples/american-flights-example.json
   /{ID}:
     get:
+      displayName: Get flight by ID
+      description: Retrieve a specific American Flight by its ID
+      is: [ErrorResponse]
       responses:
         200:
           body:
@@ -80,6 +87,7 @@ types:
                 
 /country-weather:
   get:
+    displayName: Country Weather
     description: Get information about country weather
     is: [QueryParameter, ErrorResponse]
     responses:
