@@ -6,7 +6,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-	<sub-flow name="getCountryWeatherByCountry" doc:id="eedfcd53-2bef-46d6-be1c-c61f577525d9" >
+	<sub-flow name="getWeatherByCountry" doc:id="eedfcd53-2bef-46d6-be1c-c61f577525d9" >
 		<ee:transform doc:name="Logger Message: Flow Start" doc:id="aa9c0ac7-2ffd-4557-9ca9-80cac517c641">
 			<ee:message />
 			<ee:variables>
@@ -80,30 +80,5 @@ output application/json
 			</http:response-validator>
 		</http:request>
 		<flow-ref doc:name="responseValidating" doc:id="cc17f23c-7d4f-4b8e-aa74-4fe92fcb2675" name="responseValidating"/>
-	</sub-flow>
-	<sub-flow name="responseValidating" doc:id="395c888f-eafe-40c4-8034-8eef85551079" >
-		<choice doc:name="Choice" doc:id="24f48897-5eb4-4a67-b389-69cb322934f7" >
-			<when expression="#[attributes.statusCode &lt; 400]">
-				<ee:transform doc:name="Prepare Successful Response" doc:id="06c2643e-6ef5-4e1b-a4d5-5b6d36264dc1" >
-					<ee:message >
-						<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload]]></ee:set-payload>
-					</ee:message>
-				</ee:transform>
-			</when>
-			<otherwise>
-				<set-variable value="#[attributes.statusCode]" doc:name="httpStatus" doc:id="e12831a5-1e6e-4a26-92c0-55630c462bb1" variableName="httpStatus"/>
-				<ee:transform doc:name="Prepare Error Response" doc:id="1da0e24b-2410-49be-b59a-317edc318922" >
-					<ee:message >
-						<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload]]></ee:set-payload>
-					</ee:message>
-				</ee:transform>
-			</otherwise>
-		</choice>
 	</sub-flow>
 </mule>

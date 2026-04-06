@@ -33,6 +33,6 @@
         <flow-ref doc:name="getFlightByID" doc:id="19183526-5f90-4675-91bb-9a0e627df766" name="getFlightByID" />
     </flow>
     <flow name="get:\country-weather:a-fligths-experience-api-config">
-		<flow-ref doc:name="getCountryWeatherByCountry" doc:id="c4d811be-add8-4ae2-bd4f-8b05d1aed996" name="getCountryWeatherByCountry" />
+		<flow-ref doc:name="getWeatherByCountry" doc:id="c4d811be-add8-4ae2-bd4f-8b05d1aed996" name="getWeatherByCountry" />
     </flow>
 </mule>
