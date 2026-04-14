@@ -7,17 +7,7 @@
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<sub-flow name="getWeatherByCountry" doc:id="eedfcd53-2bef-46d6-be1c-c61f577525d9" >
-		<ee:transform doc:name="Logger Message: Flow Start" doc:id="aa9c0ac7-2ffd-4557-9ca9-80cac517c641">
-			<ee:message />
-			<ee:variables>
-				<ee:set-variable variableName="logMessage"><![CDATA[%dw 2.0
-output application/json
----
-{
-	message: "Get Country Weather request"
-}]]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
+		<set-variable value='#[%dw 2.0&#10;output application/json&#10;---&#10;{&#10;	message: "Get Country Weather request"&#10;}]' doc:name="logMessage - Flow Start" doc:id="14da3525-f70c-476b-9c58-6f8d203de952" variableName="logMessage"/>
 		<flow-ref doc:name="auditLogging" doc:id="0dc46583-21ee-4f48-8280-eb700810ff88" name="auditLogging" />
 		<http:request doc:name="Call a-country-weather-pa/country-weather" doc:id="1b6edc26-c76e-450c-be63-51c55892d894" config-ref="HTTP_Domain_Request_config" path="${http.requester.countryWeatherAPI.basePath}/country-weather">
 			<http:query-params ><![CDATA[#[output application/java
@@ -32,17 +22,7 @@ output application/json
 		<flow-ref doc:name="responseValidating" doc:id="18b461fe-8eb4-491d-bb21-638a038cb0be" name="responseValidating" />
 	</sub-flow>
 	<sub-flow name="getFlightsByDestination" doc:id="94080a6a-22b7-46a6-9334-b3d441d6bb67" >
-		<ee:transform doc:name="Logger Message: Flow Start" doc:id="69800f99-f05e-496c-a31f-607de860acbf">
-			<ee:message />
-			<ee:variables>
-				<ee:set-variable variableName="logMessage"><![CDATA[%dw 2.0
-output application/json
----
-{
-	message: "Get American Flights request"
-}]]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
+		<set-variable value='#[%dw 2.0&#10;output application/json&#10;---&#10;{&#10;	message: "Get American Flights request"&#10;}]' doc:name="logMessage - Flow Start" doc:id="72e36f17-14e6-418e-947a-805797426d2c" variableName="logMessage" />
 		<flow-ref doc:name="auditLogging" doc:id="619205c6-53e7-4f1e-9d7b-dd1f33ec3bf4" name="auditLogging" />
 		<http:request doc:name="Call a-flights-pa/flights" doc:id="1e3412ab-90c5-4488-a3a5-b476ead3172f" config-ref="HTTP_Domain_Request_config" path="${http.requester.flightsAPI.basePath}/flights">
 			<http:query-params ><![CDATA[#[output application/java
@@ -57,17 +37,7 @@ output application/json
 		<flow-ref doc:name="responseValidating" doc:id="7a4f1a0f-740e-4bee-9c30-038aac09ab4a" name="responseValidating"/>
 	</sub-flow>
 	<sub-flow name="getFlightByID" doc:id="5009a0cb-05b4-4261-864c-0d74e6408d6c" >
-		<ee:transform doc:name="Logger Message: Flow Start" doc:id="b327991f-77c7-4984-b109-a734cb08d5e4">
-			<ee:message />
-			<ee:variables>
-				<ee:set-variable variableName="logMessage"><![CDATA[%dw 2.0
-output application/json
----
-{
-	message: "Get American Flight By ID request"
-}]]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
+		<set-variable value='#[%dw 2.0&#10;output application/json&#10;---&#10;{&#10;	message: "Get American Flight By ID request"&#10;}]' doc:name="logMessage - Flow Start" doc:id="49dd61aa-3b70-4629-a269-3b7e891f1a19" variableName="logMessage" />
 		<flow-ref doc:name="auditLogging" doc:id="3d8d915b-184f-4720-95f0-35e291d82a0c" name="auditLogging" />
 		<http:request doc:name="Call a-flights-pa/flights/{ID}" doc:id="c70cbc22-4d1b-47ed-8555-8f8e677d2066" config-ref="HTTP_Domain_Request_config" path="${http.requester.flightsAPI.basePath}/flights/{ID}">
 			<http:uri-params ><![CDATA[#[output application/java
